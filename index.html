@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Infinite Navy</title>
+<meta name="description" content="Infinite Navy: build warships block by block, sail them into battle in four kinds of weather, and trade your best designs with other captains. Coming to Android.">
+<link rel="canonical" href="https://infinitenavy.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://infinitenavy.com/">
+<meta property="og:title" content="Infinite Navy">
+<meta property="og:description" content="Build warships block by block, sail them into battle, and trade your best designs with other captains.">
+<meta property="og:image" content="https://infinitenavy.com/img/hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#05090f">
+<style>body{margin:0;padding:0}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: a ship's dossier on chart paper — full-bleed render, then alternating plate panels, steel cards on a dotted navy grid. Single dark look, like the game. */
+:root {
+  --sea: #0b1624;
+  --deep: #05090f;
+  --steel: #27313b;
+  --steel-2: #2b3540;
+  --rule: rgba(220, 226, 230, 0.28);
+  --ink: #ffffff;
+  --ink-2: #d6dee5;
+  --ink-3: #8fa3b5;
+  --cyan: #73b8f5;
+  --gold: #f2c93b;
+  --navy: #1f4f86;
+  --navy-edge: #5f93c9;
+  --green: #2f8f3e;
+  --dot: rgba(120, 160, 200, 0.16);
+  --f-logo: 'Saira Stencil One', Impact, 'Arial Narrow Bold', sans-serif;
+  --f-head: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+  --f-body: 'Barlow', 'Segoe UI', Roboto, Arial, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+body {
+  background-color: var(--sea);
+  background-image: radial-gradient(var(--dot) 1.4px, transparent 1.6px);
+  background-size: 9px 9px;
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 17px;
+  line-height: 1.55;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--deep); }
+a { color: var(--cyan); }
+a:hover { color: var(--ink); }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+img { max-width: 100%; display: block; }
+
+.wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+/* Nav */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: rgba(5, 9, 15, 0.94); border-bottom: 2px solid #2b3a4a; backdrop-filter: blur(6px); }
+.nav .wrap { display: flex; align-items: center; gap: 24px; min-height: 68px; }
+.logo { font-family: var(--f-logo); font-size: 24px; letter-spacing: 4px; color: #e3e5e2; text-decoration: none; white-space: nowrap; }
+.logo sup { font-family: var(--f-head); font-size: 12px; letter-spacing: 0; }
+.nav ul { display: flex; gap: 22px; list-style: none; margin: 0 0 0 auto; padding: 0; }
+.nav ul a { font-family: var(--f-head); font-weight: 700; font-size: 19px; letter-spacing: 0.5px; color: var(--cyan); text-decoration: none; }
+.nav ul a:hover { color: var(--ink); }
+@media (max-width: 760px) { .nav ul { display: none; } .nav .btn { margin-left: auto; } }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 24px; font-family: var(--f-head); font-weight: 700; font-size: 21px; letter-spacing: 0.5px; text-decoration: none; color: var(--ink); border: 2px solid var(--navy-edge); background: var(--navy); cursor: pointer; }
+.btn:hover { color: var(--ink); background: #285d9b; }
+.btn.ghost { background: rgba(5, 9, 15, 0.55); border-color: rgba(220, 226, 230, 0.55); }
+.btn.ghost:hover { background: rgba(5, 9, 15, 0.8); }
+.btn.small { min-height: 44px; font-size: 18px; padding: 0 16px; }
+
+/* Hero */
+.hero { position: relative; overflow: hidden; background: #4f8cc4; }
+.hero img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 50%; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(5, 9, 15, 0.72) 0%, rgba(5, 9, 15, 0.25) 46%, rgba(5, 9, 15, 0) 70%), linear-gradient(0deg, var(--sea) 0%, rgba(11, 22, 36, 0) 28%); }
+.hero .wrap { position: relative; z-index: 1; padding-block: clamp(64px, 11vw, 150px) clamp(72px, 10vw, 130px); }
+.hero h1 { margin: 0; font-family: var(--f-logo); font-weight: 400; font-size: clamp(52px, 10vw, 118px); line-height: 0.92; letter-spacing: clamp(4px, 1vw, 12px); color: #e9ebe8; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45); }
+.hero h1 sup { font-family: var(--f-head); font-size: 0.26em; letter-spacing: 0; vertical-align: top; position: relative; top: 0.3em; }
+.motto { margin: 18px 0 0; display: flex; align-items: center; gap: 14px; font-family: var(--f-head); font-weight: 600; font-size: 21px; letter-spacing: 6px; }
+.hero p.pitch { max-width: 31ch; margin: 22px 0 0; font-size: clamp(19px, 2.1vw, 23px); line-height: 1.45; color: #eef2f5; text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6); }
+.hero .ctas { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }
+.hero .note { margin-top: 14px; font-family: var(--f-head); font-weight: 600; font-size: 17px; letter-spacing: 1px; color: #dfe6eb; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6); }
+
+/* Sections */
+section.band { padding-block: clamp(64px, 9vw, 112px); }
+.eyebrow { display: block; font-family: var(--f-head); font-weight: 700; font-size: 17px; letter-spacing: 3px; text-transform: uppercase; color: var(--cyan); }
+h2 { margin: 8px 0 0; font-family: var(--f-head); font-weight: 700; font-size: clamp(36px, 5vw, 58px); line-height: 1.02; text-wrap: balance; }
+h3 { margin: 0; font-family: var(--f-head); font-weight: 700; font-size: 27px; line-height: 1.1; }
+.lede { max-width: 60ch; margin: 18px 0 0; font-size: 19px; color: var(--ink-2); }
+.split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+.split.flip { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); }
+.split > * { min-width: 0; }
+@media (max-width: 860px) { .split, .split.flip { grid-template-columns: minmax(0, 1fr); } .split.flip .media { order: 2; } }
+
+.plate { position: relative; border: 1px solid var(--rule); background: var(--steel); }
+.plate img { width: 100%; height: auto; }
+.plate .tag { position: absolute; left: 12px; top: 12px; padding: 2px 10px; background: rgba(5, 9, 15, 0.85); border: 1px solid #3a4856; font-family: var(--f-head); font-weight: 700; font-size: 15px; letter-spacing: 2px; color: var(--cyan); }
+
+ul.ticks { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 12px; }
+ul.ticks li { display: grid; grid-template-columns: 12px minmax(0, 1fr); gap: 14px; align-items: baseline; color: var(--ink-2); }
+ul.ticks li::before { content: ""; width: 10px; height: 10px; background: var(--gold); transform: translateY(-1px); }
+ul.ticks b { color: var(--ink); font-weight: 600; }
+
+/* Armoury */
+.armoury { margin-top: 44px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+@media (max-width: 980px) { .armoury { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .armoury { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.gun { display: flex; flex-direction: column; background: rgba(16, 30, 50, 0.72); box-shadow: 0 0 0 1px rgba(154, 164, 173, 0.45); }
+.gun .pic { aspect-ratio: 1 / 1; max-width: 100%; background: linear-gradient(#18283a, #0f1b29); display: flex; align-items: center; justify-content: center; }
+.gun .pic img { width: 86%; height: 86%; object-fit: contain; }
+.gun .body { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 6px; font-family: var(--f-head); }
+.gun .name { font-weight: 700; font-size: 21px; line-height: 1.1; }
+.gun dl { margin: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 10px; row-gap: 1px; font-size: 16px; font-variant-numeric: tabular-nums; }
+.gun dt { color: var(--ink-3); font-weight: 600; }
+.gun dd { margin: 0; text-align: right; font-weight: 600; }
+.gun .price { margin-top: 2px; display: flex; justify-content: flex-end; align-items: center; gap: 6px; font-weight: 700; font-size: 21px; color: var(--gold); font-variant-numeric: tabular-nums; }
+.coin { width: 24px; height: 16px; flex-shrink: 0; }
+
+/* Weather */
+.wx-tabs { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 6px; }
+.wx-tabs button { min-height: 52px; padding: 0 22px; font-family: var(--f-head); font-weight: 700; font-size: 21px; color: var(--cyan); background: var(--deep); border: 1px solid #2b3a4a; cursor: pointer; }
+.wx-tabs button[aria-selected="true"] { color: var(--ink); background: #18232f; border-color: #c9d2da; box-shadow: inset 0 -4px 0 #c9d2da; }
+.wx-stage { margin-top: 14px; position: relative; border: 1px solid var(--rule); background: var(--deep); aspect-ratio: 16 / 9; max-width: 100%; overflow: hidden; }
+.wx-stage img { width: 100%; height: 100%; object-fit: cover; }
+.wx-cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 20px 16px; background: linear-gradient(0deg, rgba(5, 9, 15, 0.88), rgba(5, 9, 15, 0)); display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: baseline; }
+.wx-cap strong { font-family: var(--f-head); font-weight: 700; font-size: 26px; }
+.wx-cap span { color: var(--ink-2); font-size: 16px; }
+
+/* Fleet */
+.fleet { margin-top: 40px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 980px) { .fleet { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .fleet { grid-template-columns: minmax(0, 1fr); } }
+.hull { display: flex; flex-direction: column; background: rgba(39, 49, 59, 0.92); border: 1px solid var(--rule); }
+.hull .pic { aspect-ratio: 16 / 10; max-width: 100%; background: linear-gradient(#18283a, #0f1b29); }
+.hull .pic img { width: 100%; height: 100%; object-fit: contain; }
+.hull .body { padding: 12px 14px 16px; display: flex; flex-direction: column; gap: 4px; }
+.hull .cls { font-family: var(--f-head); font-weight: 700; font-size: 15px; letter-spacing: 2px; color: var(--cyan); text-transform: uppercase; }
+.hull p { margin: 2px 0 0; font-size: 15px; color: var(--ink-2); line-height: 1.45; }
+
+/* Market */
+.listing { display: grid; grid-template-columns: minmax(0, 1fr); background: rgba(39, 49, 59, 0.95); border: 1px solid var(--rule); max-width: 520px; }
+.listing .pic { position: relative; aspect-ratio: 16 / 9; max-width: 100%; background: radial-gradient(ellipse at 50% 60%, rgba(40, 70, 100, 0.6), rgba(11, 22, 36, 0.2) 70%), #0f1b29; }
+.listing .pic img { width: 100%; height: 100%; object-fit: contain; }
+.listing .pic .new { position: absolute; left: 10px; top: 10px; padding: 1px 9px; background: var(--cyan); color: var(--sea); font-family: var(--f-head); font-weight: 700; font-size: 15px; }
+.listing .body { padding: 16px 20px 20px; display: flex; flex-direction: column; gap: 10px; font-family: var(--f-head); }
+.listing .title { font-weight: 700; font-size: 32px; line-height: 1; }
+.listing .by { font-weight: 600; font-size: 18px; color: var(--cyan); }
+.bars { display: grid; gap: 7px; font-size: 17px; font-variant-numeric: tabular-nums; }
+.bar-row { display: grid; grid-template-columns: 96px minmax(0, 1fr) 92px; gap: 12px; align-items: center; }
+.bar-row span:first-child { color: var(--ink-2); font-weight: 600; }
+.bar-row span:last-child { text-align: right; font-weight: 700; }
+.track { height: 8px; background: var(--sea); border: 1px solid #2c3a48; }
+.track i { display: block; height: 100%; background: var(--gold); }
+.buyrow { margin-top: 6px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.buyrow .amt { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 34px; color: var(--gold); font-variant-numeric: tabular-nums; }
+.buy { min-height: 52px; padding: 0 30px; display: inline-flex; align-items: center; background: var(--green); font-weight: 700; font-size: 22px; letter-spacing: 3px; box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.25); }
+
+ol.steps { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 0; counter-reset: s; }
+ol.steps li { counter-increment: s; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 16px; padding: 14px 0; border-top: 1px solid var(--rule); }
+ol.steps li:last-child { border-bottom: 1px solid var(--rule); }
+ol.steps li::before { content: counter(s); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border: 2px solid var(--gold); color: var(--gold); font-family: var(--f-head); font-weight: 700; font-size: 20px; }
+ol.steps b { display: block; font-family: var(--f-head); font-size: 22px; font-weight: 700; }
+ol.steps span { color: var(--ink-2); }
+
+/* Account strip */
+.facts { margin-top: 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 760px) { .facts { grid-template-columns: minmax(0, 1fr); } }
+.fact { padding: 22px 22px 24px; background: rgba(39, 49, 59, 0.92); border: 1px solid var(--rule); display: flex; flex-direction: column; gap: 8px; }
+.fact .num { font-family: var(--f-head); font-weight: 700; font-size: 46px; line-height: 1; color: var(--gold); font-variant-numeric: tabular-nums; }
+.fact p { margin: 0; color: var(--ink-2); }
+
+/* Closing */
+.closing { border-top: 2px solid #2b3a4a; background: linear-gradient(180deg, rgba(5, 9, 15, 0.6), rgba(5, 9, 15, 0.95)); text-align: left; }
+.closing .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
+footer { background: var(--deep); padding-block: 28px 36px; font-size: 15px; color: var(--ink-3); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 28px; }
+footer .logo { font-size: 18px; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top">INFINITE NAVY<sup>™</sup></a>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#build">Shipyard</a></li>
+        <li><a href="#fight">Battle</a></li>
+        <li><a href="#fleet">Fleet</a></li>
+        <li><a href="#market">Marketplace</a></li>
+      </ul>
+    </nav>
+    <a class="btn small" href="https://play.google.com/store/apps" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>Get it on Google Play</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-labelledby="hero-title">
+    <img class="bg" src="img/hero.jpg" alt="A grey block-built battleship cutting through a bright blue sea, guns trained forward, funnel smoke drifting aft" fetchpriority="high">
+    <div class="wrap">
+      <h1 id="hero-title">INFINITE<br>NAVY<sup>™</sup></h1>
+      <p class="motto">BUILD · SAIL · FIGHT</p>
+      <p class="pitch">Design a warship block by block, fit it with real-world guns, and take it to sea against enemy fleets.</p>
+      <div class="ctas">
+        <a class="btn" href="https://play.google.com/store/apps" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>Get it on Google Play</a>
+        <a class="btn ghost" href="#build">See the shipyard</a>
+      </div>
+      <p class="note">For Android phones and tablets · plays fully offline</p>
+    </div>
+  </section>
+
+  <section class="band" id="build" aria-labelledby="build-title">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <span class="eyebrow">The shipyard</span>
+          <h2 id="build-title">Every hull starts as a single block</h2>
+          <p class="lede">Lay the keel, stack the superstructure, place the funnels. Blocks snap to a grid, so a destroyer takes minutes and a 2,000-block carrier takes as long as you like.</p>
+          <ul class="ticks">
+            <li><span><b>Body, Engine, Weapon, Aircraft and Decoration</b> parts in one catalog.</span></li>
+            <li><span><b>Weight and balance matter.</b> Top-heavy ships roll; underpowered ones crawl.</span></li>
+            <li><span><b>Spin the model</b> on every part's info page before you spend the gold.</span></li>
+          </ul>
+        </div>
+        <div class="media plate">
+          <span class="tag">SHIPYARD</span>
+          <img src="img/yard.jpg" width="1400" height="788" alt="A battleship under construction in the shipyard, every block outlined on a light grid floor" loading="lazy">
+        </div>
+      </div>
+
+      <div class="armoury" role="list" aria-label="Five guns from the weapon catalog">
+        <article class="gun" role="listitem">
+          <div class="pic"><img src="img/gun-g46.png" alt="46 cm triple turret model" loading="lazy"></div>
+          <div class="body">
+            <span class="name">46cm Gun</span>
+            <dl><dt>Range</dt><dd>62.1 km</dd><dt>Interval</dt><dd>10.0 s</dd><dt>Energy</dt><dd>2.1 GJ</dd><dt>Weight</dt><dd>2510.1 t</dd></dl>
+            <span class="price">90000<svg class="coin" viewBox="0 0 44 30" aria-hidden="true"><ellipse cx="22" cy="21" rx="18" ry="6" fill="#a8790f"/><ellipse cx="22" cy="15" rx="18" ry="6" fill="#e0ad22"/><ellipse cx="22" cy="10" rx="18" ry="6" fill="#f6cd3c" stroke="#b8860b" stroke-width="1.2"/></svg></span>
+          </div>
+        </article>
+        <article class="gun" role="listitem">
+          <div class="pic"><img src="img/gun-g40.png" alt="40 cm triple turret model" loading="lazy"></div>
+          <div class="body">
+            <span class="name">40cm Triple Gun</span>
+            <dl><dt>Range</dt><dd>63.5 km</dd><dt>Interval</dt><dd>10.0 s</dd><dt>Energy</dt><dd>1.2 GJ</dd><dt>Weight</dt><dd>1004.1 t</dd></dl>
+            <span class="price">75000<svg class="coin" viewBox="0 0 44 30" aria-hidden="true"><ellipse cx="22" cy="21" rx="18" ry="6" fill="#a8790f"/><ellipse cx="22" cy="15" rx="18" ry="6" fill="#e0ad22"/><ellipse cx="22" cy="10" rx="18" ry="6" fill="#f6cd3c" stroke="#b8860b" stroke-width="1.2"/></svg></span>
+          </div>
+        </article>
+        <article class="gun" role="listitem">
+          <div class="pic"><img src="img/gun-g20.png" alt="20 cm twin turret model" loading="lazy"></div>
+          <div class="body">
+            <span class="name">20cm Twin Gun</span>
+            <dl><dt>Range</dt><dd>77.2 km</dd><dt>Interval</dt><dd>7.0 s</dd><dt>Energy</dt><dd>108 MJ</dd><dt>Weight</dt><dd>155.0 t</dd></dl>
+            <span class="price">15000<svg class="coin" viewBox="0 0 44 30" aria-hidden="true"><ellipse cx="22" cy="21" rx="18" ry="6" fill="#a8790f"/><ellipse cx="22" cy="15" rx="18" ry="6" fill="#e0ad22"/><ellipse cx="22" cy="10" rx="18" ry="6" fill="#f6cd3c" stroke="#b8860b" stroke-width="1.2"/></svg></span>
+          </div>
+        </article>
+        <article class="gun" role="listitem">
+          <div class="pic"><img src="img/gun-mk45.png" alt="Mk 45 5-inch gun mount model" loading="lazy"></div>
+          <div class="body">
+            <span class="name">Mk 45 5 inch Gun</span>
+            <dl><dt>Range</dt><dd>19.6 km</dd><dt>Interval</dt><dd>1.0 s</dd><dt>Energy</dt><dd>1.0 GJ</dd><dt>Weight</dt><dd>21.7 t</dd></dl>
+            <span class="price">50000<svg class="coin" viewBox="0 0 44 30" aria-hidden="true"><ellipse cx="22" cy="21" rx="18" ry="6" fill="#a8790f"/><ellipse cx="22" cy="15" rx="18" ry="6" fill="#e0ad22"/><ellipse cx="22" cy="10" rx="18" ry="6" fill="#f6cd3c" stroke="#b8860b" stroke-width="1.2"/></svg></span>
+          </div>
+        </article>
+        <article class="gun" role="listitem">
+          <div class="pic"><img src="img/gun-tt92.png" alt="Oxygen torpedo tube launcher model" loading="lazy"></div>
+          <div class="body">
+            <span class="name">Oxygen Torpedo Tube</span>
+            <dl><dt>Range</dt><dd>10.0 km</dd><dt>Interval</dt><dd>15.0 s</dd><dt>Energy</dt><dd>5.3 GJ</dd><dt>Weight</dt><dd>500.0 t</dd></dl>
+            <span class="price">30000<svg class="coin" viewBox="0 0 44 30" aria-hidden="true"><ellipse cx="22" cy="21" rx="18" ry="6" fill="#a8790f"/><ellipse cx="22" cy="15" rx="18" ry="6" fill="#e0ad22"/><ellipse cx="22" cy="10" rx="18" ry="6" fill="#f6cd3c" stroke="#b8860b" stroke-width="1.2"/></svg></span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="fight" aria-labelledby="fight-title" style="background: rgba(5, 9, 15, 0.5); border-block: 1px solid #1d2733;">
+    <div class="wrap">
+      <span class="eyebrow">Battle</span>
+      <h2 id="fight-title">Same sea, four different fights</h2>
+      <p class="lede">Weather changes what you can see and what you can hit. A clear noon duel at 60 km plays nothing like a night action lit only by the moon.</p>
+      <div class="wx-tabs" role="tablist" aria-label="Weather">
+        <button role="tab" id="tab-sunny" aria-selected="true" aria-controls="wx-panel" data-wx="sunny">Sunny</button>
+        <button role="tab" id="tab-dawn" aria-selected="false" aria-controls="wx-panel" data-wx="dawn" tabindex="-1">Dawn</button>
+        <button role="tab" id="tab-storm" aria-selected="false" aria-controls="wx-panel" data-wx="storm" tabindex="-1">Stormy</button>
+        <button role="tab" id="tab-night" aria-selected="false" aria-controls="wx-panel" data-wx="night" tabindex="-1">Night</button>
+      </div>
+      <div class="wx-stage" id="wx-panel" role="tabpanel" aria-labelledby="tab-sunny">
+        <img id="wx-img" src="img/sunny.jpg" width="1400" height="788" alt="Battleship at sea under a clear blue sky, an enemy ship and a shell splash on the horizon" loading="lazy">
+        <div class="wx-cap"><strong id="wx-name">Sunny</strong><span id="wx-desc">Long sightlines and calm water. Range is everything.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="fleet" aria-labelledby="fleet-title">
+    <div class="wrap">
+      <span class="eyebrow">Your Dock</span>
+      <h2 id="fleet-title">Build any kind of ship you can think of</h2>
+      <p class="lede">Keep a whole fleet in your Dock and pick the right hull for each battle.</p>
+      <div class="fleet">
+        <article class="hull"><div class="pic"><img src="img/ship-dd.png" alt="Block-built destroyer" loading="lazy"></div><div class="body"><span class="cls">Destroyer</span><h3>Fast and cheap</h3><p>Torpedoes, speed and a small silhouette.</p></div></article>
+        <article class="hull"><div class="pic"><img src="img/ship-ca.png" alt="Block-built cruiser" loading="lazy"></div><div class="body"><span class="cls">Cruiser</span><h3>All-rounder</h3><p>Enough armour to brawl, enough speed to escape.</p></div></article>
+        <article class="hull"><div class="pic"><img src="img/ship-bb.png" alt="Block-built battleship" loading="lazy"></div><div class="body"><span class="cls">Battleship</span><h3>Big guns</h3><p>Heavy turrets and thick belts. Slow to turn.</p></div></article>
+        <article class="hull"><div class="pic"><img src="img/ship-ss.png" alt="Block-built submarine" loading="lazy"></div><div class="body"><span class="cls">Submarine</span><h3>Unseen</h3><p>Strike from below, surface to recharge.</p></div></article>
+        <article class="hull"><div class="pic"><img src="img/ship-cv.png" alt="Block-built aircraft carrier" loading="lazy"></div><div class="body"><span class="cls">Carrier</span><h3>Air power</h3><p>A flight deck and the planes to fill it.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="market" aria-labelledby="market-title" style="background: rgba(5, 9, 15, 0.5); border-block: 1px solid #1d2733;">
+    <div class="wrap">
+      <div class="split flip">
+        <div class="media">
+          <article class="listing" aria-label="Example marketplace listing">
+            <div class="pic"><img src="img/ship-bb.png" alt="Battleship Thunder Child" loading="lazy"><span class="new">NEW</span></div>
+            <div class="body">
+              <span class="title">Thunder Child</span>
+              <span class="by">Battleship · built by Capt. Morrow</span>
+              <div class="bars">
+                <div class="bar-row"><span>Top speed</span><span class="track"><i style="width: 79%"></i></span><span>31.5 kn</span></div>
+                <div class="bar-row"><span>Fire power</span><span class="track"><i style="width: 72%"></i></span><span>3.6 GJ</span></div>
+                <div class="bar-row"><span>Toughness</span><span class="track"><i style="width: 80%"></i></span><span>48,200 HP</span></div>
+                <div class="bar-row"><span>Length</span><span class="track"><i style="width: 73%"></i></span><span>248 m</span></div>
+              </div>
+              <div class="buyrow">
+                <span class="amt">84,000<svg class="coin" style="width: 34px; height: 23px" viewBox="0 0 44 30" aria-hidden="true"><ellipse cx="22" cy="21" rx="18" ry="6" fill="#a8790f"/><ellipse cx="22" cy="15" rx="18" ry="6" fill="#e0ad22"/><ellipse cx="22" cy="10" rx="18" ry="6" fill="#f6cd3c" stroke="#b8860b" stroke-width="1.2"/></svg></span>
+                <span class="buy" aria-hidden="true">BUY</span>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div>
+          <span class="eyebrow">Marketplace</span>
+          <h2 id="market-title">Sell your best design for gold</h2>
+          <p class="lede">Built something other captains will want? List it. Every ship sells once, to one buyer, at the price you set.</p>
+          <ol class="steps">
+            <li><span><b>Pick a ship from your Dock</b>It leaves your Dock while it's listed.</span></li>
+            <li><span><b>Set your price</b>At least what its parts are worth, up to a cap.</span></li>
+            <li><span><b>We review it</b>Every listing is checked before it goes live.</span></li>
+            <li><span><b>It sells, you get paid</b>The buyer gets the ship and the gold lands in your balance.</span></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band closing" id="play" aria-labelledby="play-title">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Android</span>
+        <h2 id="play-title">Take command of your fleet</h2>
+        <p class="lede">Download Infinite Navy for your Android phone or tablet.</p>
+      </div>
+      <a class="btn" href="https://play.google.com/store/apps" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>Get it on Google Play</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="#top">INFINITE NAVY<sup>™</sup></a>
+    <span>© 2026 Infinite Navy™. Screens show the game in development.</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var data = {
+    sunny: { src: 'img/sunny.jpg', name: 'Sunny', desc: 'Long sightlines and calm water. Range is everything.', alt: 'Battleship at sea under a clear blue sky, an enemy ship and a shell splash on the horizon' },
+    dawn:  { src: 'img/dawn.jpg',  name: 'Dawn',  desc: 'Low sun in your eyes. Fight with it behind you.', alt: 'Battleship silhouetted against an orange and pink dawn sky, sunlight glittering on the water' },
+    storm: { src: 'img/storm.jpg', name: 'Stormy', desc: 'Rain and heavy seas cut visibility and throw off your aim.', alt: 'Battleship in driving rain on a dark grey sea' },
+    night: { src: 'img/night.jpg', name: 'Night', desc: 'Moonlight and muzzle flashes. Close in before they see you.', alt: 'Battleship at night with lit bridge windows, a full moon reflecting on the water' }
+  };
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.wx-tabs [role="tab"]'));
+  var img = document.getElementById('wx-img'), nm = document.getElementById('wx-name'), ds = document.getElementById('wx-desc'), panel = document.getElementById('wx-panel');
+  Object.keys(data).forEach(function (k) { var p = new Image(); p.src = data[k].src; });
+  function pick(tab, focus) {
+    var d = data[tab.dataset.wx];
+    tabs.forEach(function (t) { var on = t === tab; t.setAttribute('aria-selected', on ? 'true' : 'false'); t.tabIndex = on ? 0 : -1; });
+    img.src = d.src; img.alt = d.alt; nm.textContent = d.name; ds.textContent = d.desc;
+    panel.setAttribute('aria-labelledby', tab.id);
+    if (focus) tab.focus();
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { pick(t); });
+    t.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        var n = (i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length;
+        pick(tabs[n], true);
+      }
+    });
+  });
+})();
+</script>
+
+</body></html>
