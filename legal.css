@@ -1,0 +1,66 @@
+/* Shared look for the legal pages (privacy, terms, account deletion): the landing page's dark
+   navy chart-paper ground and fonts, set as a readable single column of text. */
+:root {
+  --sea: #0b1624;
+  --deep: #05090f;
+  --steel: #27313b;
+  --rule: rgba(220, 226, 230, 0.28);
+  --ink: #ffffff;
+  --ink-2: #d6dee5;
+  --ink-3: #8fa3b5;
+  --cyan: #73b8f5;
+  --gold: #f2c93b;
+  --red: #ff8a7a;
+  --dot: rgba(120, 160, 200, 0.16);
+  --f-logo: 'Saira Stencil One', Impact, 'Arial Narrow Bold', sans-serif;
+  --f-head: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+  --f-body: 'Barlow', 'Segoe UI', Roboto, Arial, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background-color: var(--sea);
+  background-image: radial-gradient(var(--dot) 1.4px, transparent 1.6px);
+  background-size: 9px 9px;
+  color: var(--ink-2);
+  font-family: var(--f-body);
+  font-size: 17px;
+  line-height: 1.6;
+}
+a { color: var(--cyan); }
+a:hover { color: var(--ink); }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+.wrap { width: 100%; max-width: 860px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+.nav { background: rgba(5, 9, 15, 0.94); border-bottom: 2px solid #2b3a4a; }
+.nav .wrap { display: flex; align-items: center; gap: 20px; min-height: 64px; flex-wrap: wrap; }
+.logo { font-family: var(--f-logo); font-size: 22px; letter-spacing: 4px; color: #e3e5e2; text-decoration: none; white-space: nowrap; }
+.nav ul { display: flex; gap: 18px; list-style: none; margin: 0 0 0 auto; padding: 0; flex-wrap: wrap; }
+.nav ul a { font-family: var(--f-head); font-weight: 700; font-size: 18px; color: var(--cyan); text-decoration: none; }
+.nav ul a[aria-current="page"] { color: var(--ink); }
+
+main { padding-block: 40px 56px; }
+h1, h2, h3 { font-family: var(--f-head); color: var(--ink); line-height: 1.15; }
+h1 { font-size: clamp(36px, 7vw, 52px); margin: 0 0 6px; }
+h2 { font-size: 28px; margin: 40px 0 10px; padding-top: 14px; border-top: 1px solid var(--rule); }
+h3 { font-size: 21px; margin: 24px 0 6px; }
+.meta { color: var(--ink-3); margin: 0 0 24px; }
+p, li { max-width: 72ch; }
+ul, ol { padding-left: 1.3em; }
+li { margin: 4px 0; }
+strong { color: var(--ink); }
+
+.box { background: var(--steel); border: 1px solid var(--rule); padding: 18px 22px; margin: 22px 0; }
+.box h2, .box h3 { margin-top: 0; padding-top: 0; border-top: 0; }
+.box.warn { border-color: rgba(255, 138, 122, 0.6); }
+
+table { border-collapse: collapse; width: 100%; margin: 14px 0; font-size: 16px; }
+th, td { text-align: left; vertical-align: top; padding: 10px 12px; border: 1px solid var(--rule); }
+th { font-family: var(--f-head); font-size: 18px; color: var(--ink); background: rgba(5, 9, 15, 0.5); }
+.table-scroll { overflow-x: auto; }
+
+footer { background: var(--deep); padding-block: 26px 34px; font-size: 15px; color: var(--ink-3); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; }
+footer nav a { margin-right: 16px; }
