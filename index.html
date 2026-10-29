@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Infinite Navy</title>
-<meta name="description" content="Infinite Navy: build warships block by block, sail them into battle in four kinds of weather, and trade your best designs with other captains. Coming to Android.">
+<meta name="description" content="Infinite Navy: build warships block by block, sail them into battle in four kinds of weather, and trade your best designs with other captains. Now in closed beta on Android.">
 <link rel="canonical" href="https://infinitenavy.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://infinitenavy.com/">
@@ -179,6 +179,9 @@ ol.steps span { color: var(--ink-2); }
 /* Closing */
 .closing { border-top: 2px solid #2b3a4a; background: linear-gradient(180deg, rgba(5, 9, 15, 0.6), rgba(5, 9, 15, 0.95)); text-align: left; }
 .closing .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
+.closing .wrap > div:first-child { flex: 1 1 520px; max-width: 680px; }
+.closing .ctas { display: flex; flex-direction: column; gap: 12px; }
+.closing ol.steps a { color: var(--cyan); }
 footer { background: var(--deep); padding-block: 28px 36px; font-size: 15px; color: var(--ink-3); }
 footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 28px; }
 footer .logo { font-size: 18px; }
@@ -197,7 +200,7 @@ footer .logo { font-size: 18px; }
         <li><a href="#market">Marketplace</a></li>
       </ul>
     </nav>
-    <a class="btn small" href="https://play.google.com/store/apps" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>Get it on Google Play</a>
+    <a class="btn small" href="#play">Join the beta</a>
   </div>
 </header>
 
@@ -209,10 +212,10 @@ footer .logo { font-size: 18px; }
       <p class="motto">BUILD · SAIL · FIGHT</p>
       <p class="pitch">Design a warship block by block, fit it with real-world guns, and take it to sea against enemy fleets.</p>
       <div class="ctas">
-        <a class="btn" href="https://play.google.com/store/apps" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>Get it on Google Play</a>
+        <a class="btn" href="#play">Join the beta</a>
         <a class="btn ghost" href="#build">See the shipyard</a>
       </div>
-      <p class="note">For Android phones and tablets · plays fully offline</p>
+      <p class="note">Closed beta now open · Android phones and tablets · plays fully offline</p>
     </div>
   </section>
 
@@ -353,11 +356,19 @@ footer .logo { font-size: 18px; }
   <section class="band closing" id="play" aria-labelledby="play-title">
     <div class="wrap">
       <div>
-        <span class="eyebrow">Android</span>
+        <span class="eyebrow">Closed beta · Android</span>
         <h2 id="play-title">Take command of your fleet</h2>
-        <p class="lede">Download Infinite Navy for your Android phone or tablet.</p>
+        <p class="lede">Infinite Navy is open to beta testers. Join the tester group and the game unlocks for you on Google Play.</p>
+        <ol class="steps">
+          <li><span><b>Join the tester group</b>Sign in with your Google account and join <a href="https://groups.google.com/g/infinite-navy-testers" target="_blank" rel="noopener">Infinite Navy Testers</a>.</span></li>
+          <li><span><b>Use the same Google account on your device</b>Google Play only unlocks the game for the account that joined the group.</span></li>
+          <li><span><b>Install from Google Play</b>Open <a href="https://play.google.com/store/apps/details?id=com.infinitenavy.game" target="_blank" rel="noopener">Infinite Navy on Google Play</a> and install it. If it isn't available yet, wait a few minutes after joining and try again.</span></li>
+        </ol>
       </div>
-      <a class="btn" href="https://play.google.com/store/apps" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>Get it on Google Play</a>
+      <div class="ctas">
+        <a class="btn" href="https://groups.google.com/g/infinite-navy-testers" target="_blank" rel="noopener">1 · Join the tester group</a>
+        <a class="btn ghost" href="https://play.google.com/store/apps/details?id=com.infinitenavy.game" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>3 · Get it on Google Play</a>
+      </div>
     </div>
   </section>
 </main>
