@@ -10,7 +10,7 @@
 <meta property="og:url" content="https://infinitenavy.com/">
 <meta property="og:title" content="Infinite Navy">
 <meta property="og:description" content="Build warships block by block, sail them into battle, and trade your best designs with other captains.">
-<meta property="og:image" content="https://infinitenavy.com/img/hero.jpg">
+<meta property="og:image" content="https://infinitenavy.com/img/hero-sunset.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#05090f">
 <style>body{margin:0;padding:0}[hidden]{display:none!important}</style>
@@ -30,6 +30,7 @@
   --ink-3: #8fa3b5;
   --cyan: #73b8f5;
   --gold: #f2c93b;
+  --diamond: #8fd0ff;
   --navy: #1f4f86;
   --navy-edge: #5f93c9;
   --green: #2f8f3e;
@@ -176,6 +177,13 @@ ol.steps span { color: var(--ink-2); }
 .fact .num { font-family: var(--f-head); font-weight: 700; font-size: 46px; line-height: 1; color: var(--gold); font-variant-numeric: tabular-nums; }
 .fact p { margin: 0; color: var(--ink-2); }
 
+/* Diamonds */
+.gem { width: 32px; height: 28px; flex-shrink: 0; }
+.pack .num { display: flex; align-items: center; gap: 10px; color: var(--diamond); }
+.pack .cost { font-family: var(--f-head); font-weight: 700; font-size: 26px; }
+.pack .save { font-family: var(--f-head); font-weight: 600; font-size: 17px; color: var(--diamond); }
+.fine { margin: 18px 0 0; max-width: 70ch; font-size: 15px; color: var(--ink-3); }
+
 /* Closing */
 .closing { border-top: 2px solid #2b3a4a; background: linear-gradient(180deg, rgba(5, 9, 15, 0.6), rgba(5, 9, 15, 0.95)); text-align: left; }
 .closing .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
@@ -198,6 +206,7 @@ footer .logo { font-size: 18px; }
         <li><a href="#fight">Battle</a></li>
         <li><a href="#fleet">Fleet</a></li>
         <li><a href="#market">Marketplace</a></li>
+        <li><a href="#diamonds">Diamonds</a></li>
       </ul>
     </nav>
     <a class="btn small" href="#play">Join the beta</a>
@@ -206,7 +215,7 @@ footer .logo { font-size: 18px; }
 
 <main id="top">
   <section class="hero" aria-labelledby="hero-title">
-    <img class="bg" src="img/hero.jpg" alt="A grey block-built battleship cutting through a bright blue sea, guns trained forward, funnel smoke drifting aft" fetchpriority="high">
+    <img class="bg" src="img/hero-sunset.jpg" alt="A block-built battleship under fire on a golden sunset sea, shell splashes rising around it as it closes on an enemy heavy cruiser on the horizon" fetchpriority="high">
     <div class="wrap">
       <h1 id="hero-title">INFINITE<br>NAVY<sup>™</sup></h1>
       <p class="motto">BUILD · SAIL · FIGHT</p>
@@ -234,7 +243,7 @@ footer .logo { font-size: 18px; }
         </div>
         <div class="media plate">
           <span class="tag">SHIPYARD</span>
-          <img src="img/yard.jpg" width="1400" height="788" alt="A battleship under construction in the shipyard, every block outlined on a light grid floor" loading="lazy">
+          <img src="img/yard.jpg" width="1400" height="733" alt="The shipyard screen: a block-built ship on a light grid with build tools along the bottom" loading="lazy">
         </div>
       </div>
 
@@ -295,7 +304,7 @@ footer .logo { font-size: 18px; }
         <button role="tab" id="tab-night" aria-selected="false" aria-controls="wx-panel" data-wx="night" tabindex="-1">Night</button>
       </div>
       <div class="wx-stage" id="wx-panel" role="tabpanel" aria-labelledby="tab-sunny">
-        <img id="wx-img" src="img/sunny.jpg" width="1400" height="788" alt="Battleship at sea under a clear blue sky, an enemy ship and a shell splash on the horizon" loading="lazy">
+        <img id="wx-img" src="img/sunny.jpg" width="1400" height="788" alt="In-game view of a battleship at sea under a clear blue sky, with the wheel, throttle and radar on screen" loading="lazy">
         <div class="wx-cap"><strong id="wx-name">Sunny</strong><span id="wx-desc">Long sightlines and calm water. Range is everything.</span></div>
       </div>
     </div>
@@ -321,18 +330,18 @@ footer .logo { font-size: 18px; }
       <div class="split flip">
         <div class="media">
           <article class="listing" aria-label="Example marketplace listing">
-            <div class="pic"><img src="img/ship-bb.png" alt="Battleship Thunder Child" loading="lazy"><span class="new">NEW</span></div>
+            <div class="pic"><img src="img/ship-vanguard-3d.png" alt="HMS Vanguard, a block-built battleship, in the 3D viewer" loading="lazy"><span class="new">NEW</span></div>
             <div class="body">
-              <span class="title">Thunder Child</span>
-              <span class="by">Battleship · built by Capt. Morrow</span>
+              <span class="title">HMS Vanguard</span>
+              <span class="by">Battleship · built by Capt. Skymaster</span>
               <div class="bars">
-                <div class="bar-row"><span>Top speed</span><span class="track"><i style="width: 79%"></i></span><span>31.5 kn</span></div>
-                <div class="bar-row"><span>Fire power</span><span class="track"><i style="width: 72%"></i></span><span>3.6 GJ</span></div>
-                <div class="bar-row"><span>Toughness</span><span class="track"><i style="width: 80%"></i></span><span>48,200 HP</span></div>
-                <div class="bar-row"><span>Length</span><span class="track"><i style="width: 73%"></i></span><span>248 m</span></div>
+                <div class="bar-row"><span>Top speed</span><span class="track"><i style="width: 79%"></i></span><span>38.3 kn</span></div>
+                <div class="bar-row"><span>Fire power</span><span class="track"><i style="width: 72%"></i></span><span>2252 MW</span></div>
+                <div class="bar-row"><span>Toughness</span><span class="track"><i style="width: 80%"></i></span><span>1097.6 GJ</span></div>
+                <div class="bar-row"><span>Length</span><span class="track"><i style="width: 73%"></i></span><span>350 m</span></div>
               </div>
               <div class="buyrow">
-                <span class="amt">84,000<svg class="coin" style="width: 34px; height: 23px" viewBox="0 0 44 30" aria-hidden="true"><ellipse cx="22" cy="21" rx="18" ry="6" fill="#a8790f"/><ellipse cx="22" cy="15" rx="18" ry="6" fill="#e0ad22"/><ellipse cx="22" cy="10" rx="18" ry="6" fill="#f6cd3c" stroke="#b8860b" stroke-width="1.2"/></svg></span>
+                <span class="amt">850,000<svg class="coin" style="width: 34px; height: 23px" viewBox="0 0 44 30" aria-hidden="true"><ellipse cx="22" cy="21" rx="18" ry="6" fill="#a8790f"/><ellipse cx="22" cy="15" rx="18" ry="6" fill="#e0ad22"/><ellipse cx="22" cy="10" rx="18" ry="6" fill="#f6cd3c" stroke="#b8860b" stroke-width="1.2"/></svg></span>
                 <span class="buy" aria-hidden="true">BUY</span>
               </div>
             </div>
@@ -353,6 +362,32 @@ footer .logo { font-size: 18px; }
     </div>
   </section>
 
+  <section class="band" id="diamonds" aria-labelledby="diamonds-title">
+    <div class="wrap">
+      <span class="eyebrow">Diamonds</span>
+      <h2 id="diamonds-title">Premium parts for Diamonds</h2>
+      <p class="lede">Diamonds are Infinite Navy's premium currency. Spend them on premium parts in the shipyard that gold can't buy. Every other part and hull is still bought with gold from missions and Marketplace sales.</p>
+      <div class="facts" role="list" aria-label="Diamond packs">
+        <div class="fact pack" role="listitem">
+          <span class="num">30<svg class="gem" viewBox="0 0 32 28" aria-hidden="true"><path d="M8 2h16l6 8-14 16L2 10z" fill="#4aa8e8"/><path d="M2 10h28L24 2H8z" fill="#bfe6ff"/><path d="M10 10l6 16 6-16z" fill="#8fd0ff"/><path d="M8 2h16l6 8-14 16L2 10zM2 10h28M8 2l2 8 6-8 6 8 2-8M10 10l6 16 6-16" fill="none" stroke="#1d5a8f" stroke-width="1.2" stroke-linejoin="round"/></svg></span>
+          <span class="cost">US$1.99</span>
+          <p>The starter pack.</p>
+        </div>
+        <div class="fact pack" role="listitem">
+          <span class="num">90<svg class="gem" viewBox="0 0 32 28" aria-hidden="true"><path d="M8 2h16l6 8-14 16L2 10z" fill="#4aa8e8"/><path d="M2 10h28L24 2H8z" fill="#bfe6ff"/><path d="M10 10l6 16 6-16z" fill="#8fd0ff"/><path d="M8 2h16l6 8-14 16L2 10zM2 10h28M8 2l2 8 6-8 6 8 2-8M10 10l6 16 6-16" fill="none" stroke="#1d5a8f" stroke-width="1.2" stroke-linejoin="round"/></svg></span>
+          <span class="cost">US$4.99</span>
+          <span class="save">16% less per Diamond</span>
+        </div>
+        <div class="fact pack" role="listitem">
+          <span class="num">200<svg class="gem" viewBox="0 0 32 28" aria-hidden="true"><path d="M8 2h16l6 8-14 16L2 10z" fill="#4aa8e8"/><path d="M2 10h28L24 2H8z" fill="#bfe6ff"/><path d="M10 10l6 16 6-16z" fill="#8fd0ff"/><path d="M8 2h16l6 8-14 16L2 10zM2 10h28M8 2l2 8 6-8 6 8 2-8M10 10l6 16 6-16" fill="none" stroke="#1d5a8f" stroke-width="1.2" stroke-linejoin="round"/></svg></span>
+          <span class="cost">US$8.99</span>
+          <span class="save">32% less per Diamond</span>
+        </div>
+      </div>
+      <p class="fine">Prices are in US dollars. Google Play shows the price in your local currency before you buy. Diamonds can only be bought, not earned, and can't be used on the Marketplace, turned into gold or given to other players. See the <a href="terms.html">Terms</a>.</p>
+    </div>
+  </section>
+
   <section class="band closing" id="play" aria-labelledby="play-title">
     <div class="wrap">
       <div>
@@ -362,12 +397,13 @@ footer .logo { font-size: 18px; }
         <ol class="steps">
           <li><span><b>Join the tester group</b>Sign in with your Google account and join <a href="https://groups.google.com/g/infinite-navy-testers" target="_blank" rel="noopener">Infinite Navy Testers</a>.</span></li>
           <li><span><b>Use the same Google account on your device</b>Google Play only unlocks the game for the account that joined the group.</span></li>
-          <li><span><b>Install from Google Play</b>Open <a href="https://play.google.com/store/apps/details?id=com.infinitenavy.game" target="_blank" rel="noopener">Infinite Navy on Google Play</a> and install it. If it isn't available yet, wait a few minutes after joining and try again.</span></li>
+          <li><span><b>Install from Google Play</b>Open the <a href="https://play.google.com/apps/testing/com.infinitenavy.game" target="_blank" rel="noopener">Infinite Navy testing page</a>, tap <strong>Become a tester</strong>, then follow the link to download it from Google Play. If it isn't available yet, wait a few minutes after joining and try again.</span></li>
         </ol>
       </div>
       <div class="ctas">
         <a class="btn" href="https://groups.google.com/g/infinite-navy-testers" target="_blank" rel="noopener">1 · Join the tester group</a>
-        <a class="btn ghost" href="https://play.google.com/store/apps/details?id=com.infinitenavy.game" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>3 · Get it on Google Play</a>
+        <a class="btn ghost" href="https://play.google.com/apps/testing/com.infinitenavy.game" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>3 · Get it on Google Play</a>
+        <a class="btn ghost" href="https://discord.gg/gtnr6q5zV5" target="_blank" rel="noopener">Join the official Discord</a>
       </div>
     </div>
   </section>
@@ -376,7 +412,7 @@ footer .logo { font-size: 18px; }
 <footer>
   <div class="wrap">
     <a class="logo" href="#top">INFINITE NAVY<sup>™</sup></a>
-    <span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="delete-account.html">Delete account</a></span>
+    <span><a href="https://discord.gg/gtnr6q5zV5" target="_blank" rel="noopener">Discord</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="delete-account.html">Delete account</a></span>
     <span>© 2026 Infinite Skies Studios. Infinite Navy™. Screens show the game in development.</span>
   </div>
 </footer>
@@ -384,8 +420,8 @@ footer .logo { font-size: 18px; }
 <script>
 (function () {
   var data = {
-    sunny: { src: 'img/sunny.jpg', name: 'Sunny', desc: 'Long sightlines and calm water. Range is everything.', alt: 'Battleship at sea under a clear blue sky, an enemy ship and a shell splash on the horizon' },
-    dawn:  { src: 'img/dawn.jpg',  name: 'Dawn',  desc: 'Low sun in your eyes. Fight with it behind you.', alt: 'Battleship silhouetted against an orange and pink dawn sky, sunlight glittering on the water' },
+    sunny: { src: 'img/sunny.jpg', name: 'Sunny', desc: 'Long sightlines and calm water. Range is everything.', alt: 'In-game view of a battleship at sea under a clear blue sky, with the wheel, throttle and radar on screen' },
+    dawn:  { src: 'img/dawn.jpg',  name: 'Dawn',  desc: 'Low sun in your eyes. Fight with it behind you.', alt: 'In-game view of a battleship in low orange sunlight with an enemy cruiser targeted ahead' },
     storm: { src: 'img/storm.jpg', name: 'Stormy', desc: 'Rain and heavy seas cut visibility and throw off your aim.', alt: 'Battleship in driving rain on a dark grey sea' },
     night: { src: 'img/night.jpg', name: 'Night', desc: 'Moonlight and muzzle flashes. Close in before they see you.', alt: 'Battleship at night with lit bridge windows, a full moon reflecting on the water' }
   };
