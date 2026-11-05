@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Infinite Navy</title>
-<meta name="description" content="Infinite Navy: build warships block by block, sail them into battle in four kinds of weather, and trade your best designs with other captains. Now in closed beta on Android.">
+<meta name="description" content="Infinite Navy: build warships block by block and fight ships built by other players in real-time naval battles. Now in closed beta on Android.">
 <link rel="canonical" href="https://infinitenavy.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://infinitenavy.com/">
 <meta property="og:title" content="Infinite Navy">
-<meta property="og:description" content="Build warships block by block, sail them into battle, and trade your best designs with other captains.">
-<meta property="og:image" content="https://infinitenavy.com/img/hero-sunset.jpg">
+<meta property="og:description" content="Build warships block by block, fight other players in real-time naval battles, and trade your best designs with other captains.">
+<meta property="og:image" content="https://infinitenavy.com/img/hero.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#05090f">
 <style>body{margin:0;padding:0}[hidden]{display:none!important}</style>
@@ -30,7 +30,6 @@
   --ink-3: #8fa3b5;
   --cyan: #73b8f5;
   --gold: #f2c93b;
-  --diamond: #8fd0ff;
   --navy: #1f4f86;
   --navy-edge: #5f93c9;
   --green: #2f8f3e;
@@ -177,13 +176,6 @@ ol.steps span { color: var(--ink-2); }
 .fact .num { font-family: var(--f-head); font-weight: 700; font-size: 46px; line-height: 1; color: var(--gold); font-variant-numeric: tabular-nums; }
 .fact p { margin: 0; color: var(--ink-2); }
 
-/* Diamonds */
-.gem { width: 32px; height: 28px; flex-shrink: 0; }
-.pack .num { display: flex; align-items: center; gap: 10px; color: var(--diamond); }
-.pack .cost { font-family: var(--f-head); font-weight: 700; font-size: 26px; }
-.pack .save { font-family: var(--f-head); font-weight: 600; font-size: 17px; color: var(--diamond); }
-.fine { margin: 18px 0 0; max-width: 70ch; font-size: 15px; color: var(--ink-3); }
-
 /* Closing */
 .closing { border-top: 2px solid #2b3a4a; background: linear-gradient(180deg, rgba(5, 9, 15, 0.6), rgba(5, 9, 15, 0.95)); text-align: left; }
 .closing .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
@@ -203,10 +195,9 @@ footer .logo { font-size: 18px; }
     <nav aria-label="Sections">
       <ul>
         <li><a href="#build">Shipyard</a></li>
-        <li><a href="#fight">Battle</a></li>
+        <li><a href="#pvp">Battle</a></li>
         <li><a href="#fleet">Fleet</a></li>
         <li><a href="#market">Marketplace</a></li>
-        <li><a href="#diamonds">Diamonds</a></li>
       </ul>
     </nav>
     <a class="btn small" href="#play">Join the beta</a>
@@ -215,16 +206,16 @@ footer .logo { font-size: 18px; }
 
 <main id="top">
   <section class="hero" aria-labelledby="hero-title">
-    <img class="bg" src="img/hero-sunset.jpg" alt="A block-built battleship under fire on a golden sunset sea, shell splashes rising around it as it closes on an enemy heavy cruiser on the horizon" fetchpriority="high">
+    <img class="bg" src="img/hero.jpg" alt="A block-built battleship in grey dazzle stripes on a blue sea, a seaplane flying past" fetchpriority="high">
     <div class="wrap">
       <h1 id="hero-title">INFINITE<br>NAVY<sup>™</sup></h1>
       <p class="motto">BUILD · SAIL · FIGHT</p>
-      <p class="pitch">Design a warship block by block, fit it with real-world guns, and take it to sea against enemy fleets.</p>
+      <p class="pitch">Design a warship block by block, fit it with real-world guns, and battle ships built by other players in real time.</p>
       <div class="ctas">
         <a class="btn" href="#play">Join the beta</a>
         <a class="btn ghost" href="#build">See the shipyard</a>
       </div>
-      <p class="note">Closed beta now open · Android phones and tablets · plays fully offline</p>
+      <p class="note">Closed beta now open · Android phones and tablets</p>
     </div>
   </section>
 
@@ -247,41 +238,41 @@ footer .logo { font-size: 18px; }
         </div>
       </div>
 
-      <div class="armoury" role="list" aria-label="Five guns from the weapon catalog">
+      <div class="armoury" role="list" aria-label="Five weapons from the weapon catalog">
         <article class="gun" role="listitem">
-          <div class="pic"><img src="img/gun-g46.png" alt="46 cm triple turret model" loading="lazy"></div>
+          <div class="pic"><img src="img/w-460.png" alt="460mm Type 94 triple gun turret, 8 by 8 by 3 blocks" loading="lazy"></div>
           <div class="body">
-            <span class="name">46cm Gun</span>
-            <dl><dt>Range</dt><dd>62.1 km</dd><dt>Interval</dt><dd>10.0 s</dd><dt>Energy</dt><dd>2.1 GJ</dd><dt>Weight</dt><dd>2510.1 t</dd></dl>
+            <span class="name">460mm Type 94 Gun</span>
+            <dl><dt>Range</dt><dd>20.0 km</dd><dt>Interval</dt><dd>10.0 s</dd><dt>Energy</dt><dd>2.1 GJ</dd><dt>Weight</dt><dd>2510.1 t</dd></dl>
             <span class="price">90000<svg class="coin" viewBox="0 0 44 30" aria-hidden="true"><ellipse cx="22" cy="21" rx="18" ry="6" fill="#a8790f"/><ellipse cx="22" cy="15" rx="18" ry="6" fill="#e0ad22"/><ellipse cx="22" cy="10" rx="18" ry="6" fill="#f6cd3c" stroke="#b8860b" stroke-width="1.2"/></svg></span>
           </div>
         </article>
         <article class="gun" role="listitem">
-          <div class="pic"><img src="img/gun-g40.png" alt="40 cm triple turret model" loading="lazy"></div>
+          <div class="pic"><img src="img/w-36q.png" alt="36cm quadruple gun turret, 5 by 4 by 2 blocks" loading="lazy"></div>
           <div class="body">
-            <span class="name">40cm Triple Gun</span>
-            <dl><dt>Range</dt><dd>63.5 km</dd><dt>Interval</dt><dd>10.0 s</dd><dt>Energy</dt><dd>1.2 GJ</dd><dt>Weight</dt><dd>1004.1 t</dd></dl>
-            <span class="price">75000<svg class="coin" viewBox="0 0 44 30" aria-hidden="true"><ellipse cx="22" cy="21" rx="18" ry="6" fill="#a8790f"/><ellipse cx="22" cy="15" rx="18" ry="6" fill="#e0ad22"/><ellipse cx="22" cy="10" rx="18" ry="6" fill="#f6cd3c" stroke="#b8860b" stroke-width="1.2"/></svg></span>
+            <span class="name">36cm Quadruple Gun</span>
+            <dl><dt>Range</dt><dd>17.0 km</dd><dt>Interval</dt><dd>10.0 s</dd><dt>Energy</dt><dd>822 MJ</dd><dt>Weight</dt><dd>615.0 t</dd></dl>
+            <span class="price">65000<svg class="coin" viewBox="0 0 44 30" aria-hidden="true"><ellipse cx="22" cy="21" rx="18" ry="6" fill="#a8790f"/><ellipse cx="22" cy="15" rx="18" ry="6" fill="#e0ad22"/><ellipse cx="22" cy="10" rx="18" ry="6" fill="#f6cd3c" stroke="#b8860b" stroke-width="1.2"/></svg></span>
           </div>
         </article>
         <article class="gun" role="listitem">
-          <div class="pic"><img src="img/gun-g20.png" alt="20 cm twin turret model" loading="lazy"></div>
-          <div class="body">
-            <span class="name">20cm Twin Gun</span>
-            <dl><dt>Range</dt><dd>77.2 km</dd><dt>Interval</dt><dd>7.0 s</dd><dt>Energy</dt><dd>108 MJ</dd><dt>Weight</dt><dd>155.0 t</dd></dl>
-            <span class="price">15000<svg class="coin" viewBox="0 0 44 30" aria-hidden="true"><ellipse cx="22" cy="21" rx="18" ry="6" fill="#a8790f"/><ellipse cx="22" cy="15" rx="18" ry="6" fill="#e0ad22"/><ellipse cx="22" cy="10" rx="18" ry="6" fill="#f6cd3c" stroke="#b8860b" stroke-width="1.2"/></svg></span>
-          </div>
-        </article>
-        <article class="gun" role="listitem">
-          <div class="pic"><img src="img/gun-mk45.png" alt="Mk 45 5-inch gun mount model" loading="lazy"></div>
+          <div class="pic"><img src="img/w-mk45.png" alt="Mk 45 5 inch gun mount, 1 by 2 by 2 blocks" loading="lazy"></div>
           <div class="body">
             <span class="name">Mk 45 5 inch Gun</span>
-            <dl><dt>Range</dt><dd>19.6 km</dd><dt>Interval</dt><dd>1.0 s</dd><dt>Energy</dt><dd>1.0 GJ</dd><dt>Weight</dt><dd>21.7 t</dd></dl>
+            <dl><dt>Range</dt><dd>19.6 km</dd><dt>Interval</dt><dd>1.0 s</dd><dt>Energy</dt><dd>5.0 GJ</dd><dt>Weight</dt><dd>21.7 t</dd></dl>
             <span class="price">50000<svg class="coin" viewBox="0 0 44 30" aria-hidden="true"><ellipse cx="22" cy="21" rx="18" ry="6" fill="#a8790f"/><ellipse cx="22" cy="15" rx="18" ry="6" fill="#e0ad22"/><ellipse cx="22" cy="10" rx="18" ry="6" fill="#f6cd3c" stroke="#b8860b" stroke-width="1.2"/></svg></span>
           </div>
         </article>
         <article class="gun" role="listitem">
-          <div class="pic"><img src="img/gun-tt92.png" alt="Oxygen torpedo tube launcher model" loading="lazy"></div>
+          <div class="pic"><img src="img/w-rocket.png" alt="Rocket launcher with a grid of tubes, 2 by 2 by 2 blocks" loading="lazy"></div>
+          <div class="body">
+            <span class="name">Rocket Launcher</span>
+            <dl><dt>Range</dt><dd>10.0 km</dd><dt>Interval</dt><dd>15.0 s</dd><dt>Energy</dt><dd>2.4 GJ</dd><dt>Weight</dt><dd>50.0 t</dd></dl>
+            <span class="price">30000<svg class="coin" viewBox="0 0 44 30" aria-hidden="true"><ellipse cx="22" cy="21" rx="18" ry="6" fill="#a8790f"/><ellipse cx="22" cy="15" rx="18" ry="6" fill="#e0ad22"/><ellipse cx="22" cy="10" rx="18" ry="6" fill="#f6cd3c" stroke="#b8860b" stroke-width="1.2"/></svg></span>
+          </div>
+        </article>
+        <article class="gun" role="listitem">
+          <div class="pic"><img src="img/w-oxy.png" alt="Oxygen torpedo tube, 3 by 3 by 1 blocks" loading="lazy"></div>
           <div class="body">
             <span class="name">Oxygen Torpedo Tube</span>
             <dl><dt>Range</dt><dd>10.0 km</dd><dt>Interval</dt><dd>15.0 s</dd><dt>Energy</dt><dd>5.3 GJ</dd><dt>Weight</dt><dd>500.0 t</dd></dl>
@@ -292,11 +283,32 @@ footer .logo { font-size: 18px; }
     </div>
   </section>
 
+  <section class="band" id="pvp" aria-labelledby="pvp-title">
+    <div class="wrap">
+      <div class="split flip">
+        <div class="media plate">
+          <span class="tag">REAL-TIME BATTLE</span>
+          <img src="img/pvp.jpg" width="1400" height="779" alt="In-game battle: a ship takes a hit, with the wheel, throttle and radar on screen" loading="lazy">
+        </div>
+        <div>
+          <span class="eyebrow">Fight real players</span>
+          <h2 id="pvp-title">Real-time naval battles</h2>
+          <p class="lede">Battle ships built by other players, in real time. Every opponent is a real captain with a ship of their own design.</p>
+          <ul class="ticks">
+            <li><span><b>Their hull, their guns.</b> Every ship you face was built block by block by another player.</span></li>
+            <li><span><b>Build something better.</b> Beat a design, learn from it, then take your own to sea.</span></li>
+            <li><span><b>Steer and fire live.</b> Wheel, throttle and radar, with shells in the air at up to 20 km.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="band" id="fight" aria-labelledby="fight-title" style="background: rgba(5, 9, 15, 0.5); border-block: 1px solid #1d2733;">
     <div class="wrap">
-      <span class="eyebrow">Battle</span>
-      <h2 id="fight-title">Same sea, four different fights</h2>
-      <p class="lede">Weather changes what you can see and what you can hit. A clear noon duel at 60 km plays nothing like a night action lit only by the moon.</p>
+      <span class="eyebrow">Weather</span>
+      <h2 id="fight-title">Every battle plays differently</h2>
+      <p class="lede">Weather changes what you can see and what you can hit. A clear noon duel at 20 km plays nothing like a night action lit only by the moon.</p>
       <div class="wx-tabs" role="tablist" aria-label="Weather">
         <button role="tab" id="tab-sunny" aria-selected="true" aria-controls="wx-panel" data-wx="sunny">Sunny</button>
         <button role="tab" id="tab-dawn" aria-selected="false" aria-controls="wx-panel" data-wx="dawn" tabindex="-1">Dawn</button>
@@ -304,7 +316,7 @@ footer .logo { font-size: 18px; }
         <button role="tab" id="tab-night" aria-selected="false" aria-controls="wx-panel" data-wx="night" tabindex="-1">Night</button>
       </div>
       <div class="wx-stage" id="wx-panel" role="tabpanel" aria-labelledby="tab-sunny">
-        <img id="wx-img" src="img/sunny.jpg" width="1400" height="788" alt="In-game view of a battleship at sea under a clear blue sky, with the wheel, throttle and radar on screen" loading="lazy">
+        <img id="wx-img" src="img/sunny.jpg" width="1400" height="788" alt="In-game view of a destroyer at full speed under a clear blue sky, smoke trailing from its funnels, with the wheel, throttle and radar on screen" loading="lazy">
         <div class="wx-cap"><strong id="wx-name">Sunny</strong><span id="wx-desc">Long sightlines and calm water. Range is everything.</span></div>
       </div>
     </div>
@@ -362,32 +374,6 @@ footer .logo { font-size: 18px; }
     </div>
   </section>
 
-  <section class="band" id="diamonds" aria-labelledby="diamonds-title">
-    <div class="wrap">
-      <span class="eyebrow">Diamonds</span>
-      <h2 id="diamonds-title">Premium parts for Diamonds</h2>
-      <p class="lede">Diamonds are Infinite Navy's premium currency. Spend them on premium parts in the shipyard that gold can't buy. Every other part and hull is still bought with gold from missions and Marketplace sales.</p>
-      <div class="facts" role="list" aria-label="Diamond packs">
-        <div class="fact pack" role="listitem">
-          <span class="num">30<svg class="gem" viewBox="0 0 32 28" aria-hidden="true"><path d="M8 2h16l6 8-14 16L2 10z" fill="#4aa8e8"/><path d="M2 10h28L24 2H8z" fill="#bfe6ff"/><path d="M10 10l6 16 6-16z" fill="#8fd0ff"/><path d="M8 2h16l6 8-14 16L2 10zM2 10h28M8 2l2 8 6-8 6 8 2-8M10 10l6 16 6-16" fill="none" stroke="#1d5a8f" stroke-width="1.2" stroke-linejoin="round"/></svg></span>
-          <span class="cost">US$1.99</span>
-          <p>The starter pack.</p>
-        </div>
-        <div class="fact pack" role="listitem">
-          <span class="num">90<svg class="gem" viewBox="0 0 32 28" aria-hidden="true"><path d="M8 2h16l6 8-14 16L2 10z" fill="#4aa8e8"/><path d="M2 10h28L24 2H8z" fill="#bfe6ff"/><path d="M10 10l6 16 6-16z" fill="#8fd0ff"/><path d="M8 2h16l6 8-14 16L2 10zM2 10h28M8 2l2 8 6-8 6 8 2-8M10 10l6 16 6-16" fill="none" stroke="#1d5a8f" stroke-width="1.2" stroke-linejoin="round"/></svg></span>
-          <span class="cost">US$4.99</span>
-          <span class="save">16% less per Diamond</span>
-        </div>
-        <div class="fact pack" role="listitem">
-          <span class="num">200<svg class="gem" viewBox="0 0 32 28" aria-hidden="true"><path d="M8 2h16l6 8-14 16L2 10z" fill="#4aa8e8"/><path d="M2 10h28L24 2H8z" fill="#bfe6ff"/><path d="M10 10l6 16 6-16z" fill="#8fd0ff"/><path d="M8 2h16l6 8-14 16L2 10zM2 10h28M8 2l2 8 6-8 6 8 2-8M10 10l6 16 6-16" fill="none" stroke="#1d5a8f" stroke-width="1.2" stroke-linejoin="round"/></svg></span>
-          <span class="cost">US$8.99</span>
-          <span class="save">32% less per Diamond</span>
-        </div>
-      </div>
-      <p class="fine">Prices are in US dollars. Google Play shows the price in your local currency before you buy. Diamonds can only be bought, not earned, and can't be used on the Marketplace, turned into gold or given to other players. See the <a href="terms.html">Terms</a>.</p>
-    </div>
-  </section>
-
   <section class="band closing" id="play" aria-labelledby="play-title">
     <div class="wrap">
       <div>
@@ -420,7 +406,7 @@ footer .logo { font-size: 18px; }
 <script>
 (function () {
   var data = {
-    sunny: { src: 'img/sunny.jpg', name: 'Sunny', desc: 'Long sightlines and calm water. Range is everything.', alt: 'In-game view of a battleship at sea under a clear blue sky, with the wheel, throttle and radar on screen' },
+    sunny: { src: 'img/sunny.jpg', name: 'Sunny', desc: 'Long sightlines and calm water. Range is everything.', alt: 'In-game view of a destroyer at full speed under a clear blue sky, smoke trailing from its funnels, with the wheel, throttle and radar on screen' },
     dawn:  { src: 'img/dawn.jpg',  name: 'Dawn',  desc: 'Low sun in your eyes. Fight with it behind you.', alt: 'In-game view of a battleship in low orange sunlight with an enemy cruiser targeted ahead' },
     storm: { src: 'img/storm.jpg', name: 'Stormy', desc: 'Rain and heavy seas cut visibility and throw off your aim.', alt: 'Battleship in driving rain on a dark grey sea' },
     night: { src: 'img/night.jpg', name: 'Night', desc: 'Moonlight and muzzle flashes. Close in before they see you.', alt: 'Battleship at night with lit bridge windows, a full moon reflecting on the water' }
